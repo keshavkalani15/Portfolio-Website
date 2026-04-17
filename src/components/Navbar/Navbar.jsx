@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { ThemeContext } from '../../context/ThemeContext';
 import './Navbar.css';
 
@@ -17,12 +17,11 @@ export default function Navbar() {
   const [activeId, setActiveId]     = useState('home');
   const { theme, toggleTheme }      = useContext(ThemeContext);
 
-  // Detect scroll for navbar background
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 50);
+  });
 
   // IntersectionObserver — highlight whichever section is most visible
   useEffect(() => {
