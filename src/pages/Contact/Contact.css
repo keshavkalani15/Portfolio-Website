@@ -1,0 +1,303 @@
+/* ---- Dot Matrix Background ---- */
+.contact-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Ambient glow overlay (positioned above the canvas) */
+.contact-bg::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 30% 40%, rgba(124, 58, 237, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 70%, rgba(59, 130, 246, 0.12) 0%, transparent 50%);
+  animation: contactGlow 12s ease-in-out infinite alternate;
+}
+
+@keyframes contactGlow {
+  0% { opacity: 0.5; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+.contact-header {
+  margin-bottom: 48px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ---- Contact Info ---- */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+}
+
+.contact-card-icon {
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: rgba(124, 58, 237, 0.1);
+  color: var(--accent-light);
+}
+
+.contact-card h3 {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.contact-card a,
+.contact-card p {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+}
+
+.contact-card a:hover {
+  color: var(--accent-light);
+}
+
+/* Social Buttons */
+.contact-socials {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  flex: 1;
+  justify-content: center;
+}
+
+.social-btn:hover {
+  color: var(--accent-light);
+  border-color: var(--accent);
+  background: rgba(124, 58, 237, 0.05);
+}
+
+.contact-resume-btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+  font-size: 1rem;
+  padding: 18px 28px;
+}
+
+/* ---- Contact Form ---- */
+.contact-form-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+}
+
+.contact-form h2 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+/* Fix autofill background color */
+.form-group input:-webkit-autofill,
+.form-group input:-webkit-autofill:hover, 
+.form-group input:-webkit-autofill:focus, 
+.form-group textarea:-webkit-autofill,
+.form-group textarea:-webkit-autofill:hover,
+.form-group textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: var(--text-primary);
+  -webkit-box-shadow: 0 0 0px 1000px var(--bg-secondary) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.contact-form .btn {
+  width: 100%;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-socials {
+    flex-direction: column;
+  }
+}
+
+.contact-success {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99999;
+  background-color: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sky-container {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.cloud {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.03);
+  animation: moveCloud linear infinite;
+  z-index: 1;
+}
+
+.cloud-1 { top: 10%; left: -20%; width: 140px; animation-duration: 20s; }
+.cloud-2 { top: 60%; left: -20%; width: 90px;  animation-duration: 35s; animation-delay: -10s; }
+.cloud-3 { top: 35%; left: -20%; width: 180px; animation-duration: 28s; animation-delay: -5s; }
+
+@keyframes moveCloud {
+  to { transform: translateX(140vw); }
+}
+
+.paper-plane {
+  width: 50px;
+  height: 50px;
+  color: var(--accent);
+  position: absolute;
+  z-index: 10;
+  opacity: 0;
+  offset-path: path("M -1500 0 C 0 0, 250 -200, 0 -200 C -250 -200, -250 200, 0 200 C 250 200, 0 0, 1500 0");
+  offset-rotate: auto 45deg;
+  animation: flyCurved 4s linear forwards;
+}
+
+.trail { display: none; }
+
+@keyframes flyCurved {
+  0%   { offset-distance: 0%;   opacity: 0; transform: scale(0.5); }
+  5%   { opacity: 1; }
+  25%  { offset-distance: 35%;  transform: scale(1); }
+  55%  { offset-distance: 55%;  transform: scale(3.5); }
+  70%  { offset-distance: 65%;  transform: scale(1); opacity: 1; }
+  85%  { offset-distance: 100%; opacity: 0; transform: scale(0.2); }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+
+.success-text {
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards 2.5s;
+}
+
+.success-text h2 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 12px;
+}
+
+.success-text p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.redirecting-msg {
+  margin-top: 16px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+  opacity: 0;
+  animation: fadeInUp 0.6s ease forwards 3.5s;
+}
+

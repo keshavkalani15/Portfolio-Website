@@ -1,0 +1,20 @@
+/* App-level styles (minimal - most styles in index.css and component CSS) */
+
+main {
+  min-height: 100vh;
+}
+
+/* Each anchor section must be a positioning context
+   so absolute backgrounds in page components are scoped correctly */
+main > section {
+  position: relative;
+  overflow: hidden;
+  scroll-margin-top: calc(var(--nav-height) + 10px);
+}
+
+/* Remove the inner .page-transition fade-in — sections are always visible */
+.page-transition {
+  animation: none;
+  opacity: 1;
+  transform: none;
+}

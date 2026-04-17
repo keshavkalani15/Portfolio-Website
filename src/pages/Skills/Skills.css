@@ -1,0 +1,80 @@
+/* ---- LetterGlitch Background Container ---- */
+.skills-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  
+  /* Spotlight effect variables */
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+  
+  /* Spotlight reveals background at 35% opacity under mouse, fades to 2% over 600px */
+  -webkit-mask-image: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.02) 600px);
+  mask-image: radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.02) 600px);
+}
+
+.skills-header {
+  margin-bottom: 48px;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.skill-category {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skill-category-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.skill-category-icon {
+  font-size: 2rem;
+  line-height: 1;
+  margin-top: 2px;
+}
+
+.skill-category-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.skill-category-header p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Make the first category (Languages) span full width */
+.skills-grid .skill-category:first-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-grid .skill-category:first-child {
+    grid-column: auto;
+  }
+}

@@ -1,0 +1,218 @@
+/* ---- PixelBlast Background Container ---- */
+.about-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg-primary);
+  opacity: 0.25;
+}
+
+.about-header {
+  margin-bottom: 64px;
+}
+
+.about-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.about-section-title svg {
+  color: var(--accent-light);
+}
+
+/* ---- Timeline ---- */
+.about-education {
+  margin-bottom: 64px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--accent) 0%, var(--border) 100%);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 32px;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -32px;
+  top: 28px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg-primary);
+  box-shadow: 0 0 15px var(--accent-glow);
+  z-index: 1;
+}
+
+.timeline-content {
+  margin-left: 8px;
+}
+
+.timeline-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.timeline-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.timeline-period {
+  font-size: 0.82rem;
+  color: var(--accent-light);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.timeline-degree {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.timeline-minor {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+
+.timeline-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.timeline-location {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ---- Achievements ---- */
+.about-achievements {
+  margin-bottom: 64px;
+}
+
+.achievements-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.achievement-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.achievement-icon {
+  font-size: 2rem;
+}
+
+.achievement-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.achievement-card p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ---- Certifications ---- */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.certification-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.certification-item:hover {
+  border-color: var(--border-light);
+  background: var(--bg-card-hover);
+}
+
+.cert-dot {
+  width: 8px;
+  height: 8px;
+  min-width: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 6px;
+}
+
+.certification-item h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.certification-item p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.cert-note {
+  margin-top: 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .achievements-grid,
+  .certifications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+}
