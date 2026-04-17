@@ -40,4 +40,4 @@ A high-performance, interactive personal portfolio built with React and Vite. Th
    ```
 
 ---
-Built with ❤️ by Keshav Kalani.
+Built by Keshav Kalani.
