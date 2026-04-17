@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useContext } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { ThemeContext } from '../../context/ThemeContext';
 import './Navbar.css';
 
@@ -12,16 +12,24 @@ const navItems = [
 ];
 
 export default function Navbar() {
-  const [scrolled, setScrolled]     = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeId, setActiveId]     = useState('home');
   const { theme, toggleTheme }      = useContext(ThemeContext);
 
   const { scrollY } = useScroll();
+  
+  // High-reliability transforms for production
+  // Maps scroll position [0-80px] to glass effect values
+  const bgOpacity = useTransform(scrollY, [0, 80], [0, 1]);
+  const blurBase  = useTransform(scrollY, [0, 80], [0, 20]);
+  
+  // Smoothing the values to prevent jitter
+  const smoothBgOpacity = useSpring(bgOpacity, { stiffness: 100, damping: 20 });
+  const smoothBlur      = useSpring(blurBase, { stiffness: 100, damping: 20 });
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrolled(latest > 50);
-  });
+  // Compute dynamic styles based on theme
+  const glassColor = theme === 'dark' ? 'rgba(10, 10, 15, 0.75)' : 'rgba(255, 255, 255, 0.85)';
+  const borderColor = theme === 'dark' ? 'rgba(34, 34, 51, 0.5)' : 'rgba(220, 220, 228, 0.6)';
 
   // IntersectionObserver — highlight whichever section is most visible
   useEffect(() => {
@@ -58,9 +66,25 @@ export default function Navbar() {
     setMobileOpen(false);
   }, []);
 
+  // Sync scrollY value for the border-bottom visibility
+  const [hasBorder, setHasBorder] = useState(false);
+  useEffect(() => {
+    return scrollY.on("change", (latest) => setHasBorder(latest > 80));
+  }, [scrollY]);
+
   return (
     <>
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="main-navbar">
+      <motion.nav 
+        className="navbar" 
+        id="main-navbar"
+        style={{
+          backgroundColor: useTransform(smoothBgOpacity, [0, 1], ['rgba(0,0,0,0)', glassColor]),
+          backdropFilter: useTransform(smoothBlur, (v) => `blur(${v}px) saturate(160%)`),
+          WebkitBackdropFilter: useTransform(smoothBlur, (v) => `blur(${v}px) saturate(160%)`),
+          borderBottom: hasBorder ? `1px solid ${borderColor}` : '1px solid transparent',
+          boxShadow: hasBorder ? '0 4px 30px rgba(0, 0, 0, 0.1)' : 'none'
+        }}
+      >
         <div className="navbar-inner">
           {/* Draggable logo — scrolls to top on click */}
           <motion.div
@@ -130,7 +154,7 @@ export default function Navbar() {
             <span /><span /><span />
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* Mobile drawer */}
       <div className={`navbar-mobile ${mobileOpen ? 'open' : ''}`}>

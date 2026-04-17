@@ -8,19 +8,7 @@
   align-items: center;
   justify-content: center;
   z-index: 9999;
-  transition: background 0.4s ease, border 0.4s ease, box-shadow 0.4s ease;
-  /* Ensuring background content isn't blocked by a hidden isolation layer */
-  isolation: auto;
-}
-
-.navbar.scrolled {
-  background: var(--bg-glass);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid var(--border);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  /* Promoting to compositor layer without breaking backdrop-filter */
-  will-change: backdrop-filter;
+  /* Transitions are handled by useSpring in Navbar.jsx for maximum reliability */
 }
 
 .navbar-inner {
