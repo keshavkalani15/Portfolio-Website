@@ -8,16 +8,26 @@
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  transition: all var(--transition-base);
+  transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease;
 }
 
-.navbar.scrolled {
+/* More robust glassmorphism implementation using pseudo-element */
+.navbar.scrolled::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: var(--bg-glass);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  z-index: -1;
+}
+
+.navbar.scrolled {
   border-bottom: 1px solid var(--border);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
-  transform: translateZ(0);
 }
 
 .navbar-inner {
