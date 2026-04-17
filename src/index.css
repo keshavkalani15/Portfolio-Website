@@ -8,7 +8,7 @@
   --bg-secondary: #111118;
   --bg-card: #16161f;
   --bg-card-hover: #1e1e2a;
-  --bg-glass: rgba(16, 16, 24, 0.7);
+  --bg-glass: rgba(10, 10, 15, 0.8);
 
   --text-primary: #f0f0f5;
   --text-secondary: #9595a8;
@@ -42,7 +42,7 @@
   --bg-secondary: #f4f4f8;
   --bg-card: #ececf1;
   --bg-card-hover: #e2e2e8;
-  --bg-glass: rgba(255, 255, 255, 0.85);
+  --bg-glass: rgba(255, 255, 255, 0.9);
 
   --text-primary: #12121a;
   --text-secondary: #4a4a5c;
