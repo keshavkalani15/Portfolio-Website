@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { ThemeContext } from '../../context/ThemeContext';
-import { personalInfo, education, certifications, achievements } from '../../data/resumeData';
+import { personalInfo, experience, education, certifications, achievements } from '../../data/resumeData';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import PixelBlast from '../../components/reactbits/PixelBlast';
 import './About.css';
@@ -42,11 +42,44 @@ export default function About() {
             <h2 className="section-title">Passionate Developer &<br />Lifelong Learner</h2>
             <p className="section-subtitle">{personalInfo.summary}</p>
           </div>
+<br />
+          {/* Work Experience Timeline */}
+          <div className="about-experience reveal">
+            <h2 className="about-section-title">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              Work Experience
+            </h2>
+            <div className="timeline">
+              {experience.map((exp, index) => (
+                <div className="timeline-item" key={index}>
+                  <div className="timeline-dot"></div>
+                  <div className="timeline-content card">
+                    <div className="timeline-header">
+                      <h3>{exp.company}</h3>
+                      <span className="timeline-period">{exp.period}</span>
+                    </div>
+                    <div className="timeline-role-info">
+                      <p className="timeline-degree">{exp.role}</p>
+                      <span className="tag experience-type">{exp.type}</span>
+                    </div>
+                    <ul className="timeline-points">
+                      {exp.points.map((point, idx) => (
+                        <li key={idx}>{point}</li>
+                      ))}
+                    </ul>
+                    <div className="timeline-meta">
+                      <span className="timeline-location">📍 {exp.location}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
 
           {/* Education Timeline */}
           <div className="about-education reveal">
             <h2 className="about-section-title">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c3 3 9 3 12 0v-5" /></svg>
               Education
             </h2>
             <div className="timeline">
@@ -73,7 +106,7 @@ export default function About() {
           {/* Achievements */}
           <div className="about-achievements reveal">
             <h2 className="about-section-title">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="8" r="7" /><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" /></svg>
               Achievements
             </h2>
             <div className="achievements-grid">
@@ -90,7 +123,7 @@ export default function About() {
           {/* Certifications */}
           <div className="about-certifications reveal">
             <h2 className="about-section-title">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="3" y="4" width="18" height="18" rx="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
               Certifications
             </h2>
             <div className="certifications-grid">

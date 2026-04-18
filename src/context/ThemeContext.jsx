@@ -9,11 +9,7 @@ export function ThemeProvider({ children }) {
     if (savedTheme) {
       return savedTheme;
     }
-    // Optional: respect system preference if no saved theme
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
-      return 'light';
-    }
-    return 'dark'; // default
+    return 'dark'; // strict default
   });
 
   // Attach data-theme attribute to <html> so CSS variables override

@@ -497,11 +497,30 @@ const PixelBlast = ({
         passive: true
       });
       let raf = 0;
+      let lastAutoTouch = 0;
       const animate = () => {
         if (autoPauseOffscreen && !visibilityRef.current.visible) {
           raf = requestAnimationFrame(animate);
           return;
         }
+
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+          const now = Date.now();
+          if (now - lastAutoTouch > 2000) {
+            lastAutoTouch = now;
+            const fx = Math.random() * renderer.domElement.width;
+            const fy = Math.random() * renderer.domElement.height;
+            if (touch) {
+              touch.addTouch({ x: fx / renderer.domElement.width, y: fy / renderer.domElement.height });
+            }
+            const ix = threeRef.current?.clickIx ?? 0;
+            uniforms.uClickPos.value[ix].set(fx, fy);
+            uniforms.uClickTimes.value[ix] = uniforms.uTime.value;
+            if (threeRef.current) threeRef.current.clickIx = (ix + 1) % MAX_CLICKS;
+          }
+        }
+
         uniforms.uTime.value = timeOffset + clock.getElapsedTime() * speedRef.current;
         if (liquidEffect) liquidEffect.uniforms.get('uTime').value = uniforms.uTime.value;
         if (composer) {

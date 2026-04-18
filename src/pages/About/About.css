@@ -33,6 +33,7 @@
 }
 
 /* ---- Timeline ---- */
+.about-experience,
 .about-education {
   margin-bottom: 64px;
 }
@@ -109,6 +110,44 @@
   font-size: 0.85rem;
   font-style: italic;
   margin-bottom: 12px;
+}
+
+.timeline-role-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.experience-type {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  background: var(--accent-transparent);
+  color: var(--accent-light);
+  border: 1px solid var(--accent-border);
+}
+
+.timeline-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.timeline-points li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.timeline-points li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: 700;
 }
 
 .timeline-meta {
@@ -214,5 +253,10 @@
   .timeline-header {
     flex-direction: column;
     gap: 4px;
+  }
+
+  /* Reduce background intensity for light theme on mobile */
+  [data-theme='light'] .about-bg {
+    opacity: 0.1;
   }
 }

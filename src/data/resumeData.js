@@ -41,6 +41,21 @@ export const education = [
   },
 ];
 
+export const experience = [
+  {
+    company: "Guruji World Technologies",
+    role: "Software Development Intern",
+    location: "Baner, Pune (On-site)",
+    period: "Mar 2026 – Present",
+    type: "3 Months Internship",
+    points: [
+      "Currently contributing to the development phase, focusing on multi-language localization using the i18n library.",
+      "Expanding project scope to include mobile development using React Native.",
+      "Integrating advanced AI capabilities by working with Large Language Models like Ollama.",
+    ],
+  },
+];
+
 export const skills = {
   Languages: ["C++", "Python", "JavaScript", "SQL"],
   "Web Technologies": ["React.js", "HTML5/CSS3", "Tailwind CSS", "Flask"],

@@ -204,6 +204,15 @@
   .contact-socials {
     flex-direction: column;
   }
+
+  /* Reduce background intensity for light theme on mobile */
+  [data-theme='light'] .contact-bg {
+    opacity: 0.3; /* Lower from default */
+  }
+
+  [data-theme='light'] .contact-bg::after {
+    opacity: 0.2; /* Tones down the ambient glow animations */
+  }
 }
 
 .contact-success {

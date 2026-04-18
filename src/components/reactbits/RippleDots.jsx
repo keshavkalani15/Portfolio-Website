@@ -86,8 +86,18 @@ export default function RippleDots({
 
         // Interaction
         if (interactive) {
-          const dx = mouse.x - dot.originX;
-          const dy = mouse.y - dot.originY;
+          const isMobile = window.innerWidth < 768;
+          let currentMouseX = mouse.x;
+          let currentMouseY = mouse.y;
+
+          // On mobile, simulate a floating virtual cursor if no real mouse activity
+          if (isMobile) {
+            currentMouseX = width / 2 + Math.sin(time * 0.8) * (width / 3);
+            currentMouseY = height / 2 + Math.cos(time * 0.5) * (height / 3);
+          }
+
+          const dx = currentMouseX - dot.originX;
+          const dy = currentMouseY - dot.originY;
           const dist = Math.sqrt(dx * dx + dy * dy);
           
           if (dist < effectRadius) {

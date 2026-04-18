@@ -35,17 +35,43 @@ export default function Skills() {
   const bgRef = useRef(null);
 
   useEffect(() => {
-    const handleMouseMove = (e) => {
+    let animationFrame;
+    let time = 0;
+
+    const updateSpotlight = (x, y) => {
       if (bgRef.current) {
-        const rect = bgRef.current.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width)  * 100;
-        const y = ((e.clientY - rect.top)  / rect.height) * 100;
         bgRef.current.style.setProperty('--mouse-x', `${x}%`);
         bgRef.current.style.setProperty('--mouse-y', `${y}%`);
       }
     };
+
+    const animate = () => {
+      const isMobile = window.innerWidth < 768;
+      if (isMobile) {
+        time += 0.01;
+        const autoX = 50 + Math.sin(time * 0.8) * 30;
+        const autoY = 50 + Math.cos(time * 0.5) * 20;
+        updateSpotlight(autoX, autoY);
+      }
+      animationFrame = requestAnimationFrame(animate);
+    };
+
+    const handleMouseMove = (e) => {
+      const isMobile = window.innerWidth < 768;
+      if (!isMobile && bgRef.current) {
+        const rect = bgRef.current.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        updateSpotlight(x, y);
+      }
+    };
+
+    animate();
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      cancelAnimationFrame(animationFrame);
+    };
   }, []);
 
   return (

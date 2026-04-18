@@ -4,28 +4,28 @@ import { ThemeContext } from '../../context/ThemeContext';
 import './Navbar.css';
 
 const navItems = [
-  { id: 'home',     label: 'Home' },
-  { id: 'about',    label: 'About' },
+  { id: 'home', label: 'Home' },
+  { id: 'about', label: 'About' },
   { id: 'projects', label: 'Projects' },
-  { id: 'skills',   label: 'Skills' },
-  { id: 'contact',  label: 'Contact' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'contact', label: 'Contact' },
 ];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeId, setActiveId]     = useState('home');
-  const { theme, toggleTheme }      = useContext(ThemeContext);
+  const [activeId, setActiveId] = useState('home');
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const { scrollY } = useScroll();
-  
+
   // High-reliability transforms for production
   // Maps scroll position [0-80px] to glass effect values
   const bgOpacity = useTransform(scrollY, [0, 80], [0, 1]);
-  const blurBase  = useTransform(scrollY, [0, 80], [0, 20]);
-  
+  const blurBase = useTransform(scrollY, [0, 80], [0, 20]);
+
   // Smoothing the values to prevent jitter
   const smoothBgOpacity = useSpring(bgOpacity, { stiffness: 100, damping: 20 });
-  const smoothBlur      = useSpring(blurBase, { stiffness: 100, damping: 20 });
+  const smoothBlur = useSpring(blurBase, { stiffness: 100, damping: 20 });
 
   // Compute dynamic styles based on theme
   const glassColor = theme === 'dark' ? 'rgba(10, 10, 15, 0.75)' : 'rgba(255, 255, 255, 0.85)';
@@ -34,7 +34,7 @@ export default function Navbar() {
   // IntersectionObserver — highlight whichever section is most visible
   useEffect(() => {
     const observers = [];
-    const visible   = {};   // sectionId -> intersectionRatio
+    const visible = {};   // sectionId -> intersectionRatio
 
     navItems.forEach(({ id }) => {
       const el = document.getElementById(id);
@@ -74,8 +74,8 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav 
-        className="navbar" 
+      <motion.nav
+        className="navbar"
         id="main-navbar"
         style={{
           backgroundColor: useTransform(smoothBgOpacity, [0, 1], ['rgba(0,0,0,0)', glassColor]),
@@ -120,22 +120,22 @@ export default function Navbar() {
           </div>
 
           <div className="navbar-actions">
-            <button 
-              className="theme-toggle cursor-target" 
+            <button
+              className="theme-toggle cursor-target"
               onClick={toggleTheme}
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="5"/>
-                  <line x1="12" y1="1" x2="12" y2="3"/>
-                  <line x1="12" y1="21" x2="12" y2="23"/>
-                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                  <line x1="1" y1="12" x2="3" y2="12"/>
-                  <line x1="21" y1="12" x2="23" y2="12"/>
-                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" />
+                  <line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                 </svg>
               ) : (
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
