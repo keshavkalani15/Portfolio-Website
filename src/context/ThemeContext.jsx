@@ -3,14 +3,8 @@ import { createContext, useState, useEffect } from 'react';
 export const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
-  // Initialize theme from localStorage or default to 'dark'
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('portfolio-theme');
-    if (savedTheme) {
-      return savedTheme;
-    }
-    return 'dark'; // strict default
-  });
+  // Always start with dark mode regardless of saved preference
+  const [theme, setTheme] = useState('dark');
 
   // Attach data-theme attribute to <html> so CSS variables override
   useEffect(() => {
