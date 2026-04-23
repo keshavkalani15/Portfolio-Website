@@ -1,5 +1,7 @@
 # Keshav Kalani | Full-Stack Portfolio
 
+🌐 **Live Demo:** [keshavkalani15.vercel.app](https://keshavkalani15.vercel.app)
+
 A high-performance, interactive personal portfolio built with React and Vite. This project features advanced WebGL backgrounds, custom animations, and a seamless Dark/Light theme system.
 
 ## ✨ Features
@@ -21,7 +23,7 @@ A high-performance, interactive personal portfolio built with React and Vite. Th
 - **Styling:** Vanilla CSS (Custom Variable System)
 - **Animations:** GSAP, Framer Motion, ReactBits
 - **3D/Graphics:** Three.js, OGL
-- **Deployment:** Vercel (Recommended)
+- **Deployment:** [Vercel](https://keshavkalani15.vercel.app)
 
 ## 🚀 Getting Started
 
